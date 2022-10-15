@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const cors = require('cors')
 const mysql = require('mysql')
@@ -25,6 +26,6 @@ app.use(
 app.use('/api/category', categoryRouter)
 app.use('/api/products', productsRouter)
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Server running')
 })

@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const mysql = require('mysql')
 const myConnection = require('express-myconnection')
+const categoryRouter = require('./routes/category')
+const productsRouter = require('./routes/products')
 
 const app = express()
 
@@ -16,7 +18,12 @@ const db_config = {
   database: 'bsale_test'
 }
 
-app.use(myConnection(mysql, db_config, 'single'))
+app.use(
+  myConnection(mysql, db_config, "single")
+)
+
+app.use('/api/category', categoryRouter)
+app.use('/api/products', productsRouter)
 
 app.listen(3000, () => {
   console.log('Server running')
